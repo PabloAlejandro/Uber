@@ -22,7 +22,7 @@
 
 @interface DashboardCollectionController : NSObject <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, weak) IBOutlet id <DashboardCollectionDelegate> delegate;
+@property (nonatomic, weak) id <DashboardCollectionDelegate> delegate;
 @property (nonatomic, strong) UICollectionView * collectionView;
 @property (nonatomic, strong) Photos * photos;
 

@@ -127,6 +127,10 @@ static NSString * const kHistorySegue = @"HistorySegue";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectPhoto:(Photo *)photo atIndexPath:(NSIndexPath *)indexPath
 {
+    if([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
+    
     // TODO: Use the image for a new action (ie. open the image in a new view)
     // Note: this is not implemented since the task description remarks not to implement anything that is not asked.
 }
@@ -188,6 +192,8 @@ static NSString * const kHistorySegue = @"HistorySegue";
     }
     return _jsonRequestRetry;
 }
+
+#pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

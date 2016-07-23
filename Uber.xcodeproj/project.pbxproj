@@ -23,8 +23,9 @@
 		60606BAF1D43C54600E425E3 /* ServerRequestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BAE1D43C54600E425E3 /* ServerRequestUtils.m */; };
 		60606BB21D43C59900E425E3 /* NetworkFactoryRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BB11D43C59900E425E3 /* NetworkFactoryRequests.m */; };
 		60606BB61D43C65500E425E3 /* NSUserDefaults+History.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BB51D43C65500E425E3 /* NSUserDefaults+History.m */; };
-		60606BBA1D43C6F900E425E3 /* JsonRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BB91D43C6F900E425E3 /* JsonRequest.m */; };
+		60606BBA1D43C6F900E425E3 /* JsonRequestRetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BB91D43C6F900E425E3 /* JsonRequestRetry.m */; };
 		60606BBD1D43C71800E425E3 /* RequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BBC1D43C71800E425E3 /* RequestsManager.m */; };
+		60606BC11D43C8EC00E425E3 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BC01D43C8EC00E425E3 /* ImageDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,10 +78,12 @@
 		60606BB11D43C59900E425E3 /* NetworkFactoryRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkFactoryRequests.m; path = Utils/Network/NetworkFactoryRequests/NetworkFactoryRequests.m; sourceTree = "<group>"; };
 		60606BB41D43C65500E425E3 /* NSUserDefaults+History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+History.h"; path = "Utils/History/NSUserDefaults+History.h"; sourceTree = "<group>"; };
 		60606BB51D43C65500E425E3 /* NSUserDefaults+History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+History.m"; path = "Utils/History/NSUserDefaults+History.m"; sourceTree = "<group>"; };
-		60606BB81D43C6F900E425E3 /* JsonRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonRequest.h; path = Utils/JsonRequest/JsonRequest.h; sourceTree = "<group>"; };
-		60606BB91D43C6F900E425E3 /* JsonRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonRequest.m; path = Utils/JsonRequest/JsonRequest.m; sourceTree = "<group>"; };
+		60606BB81D43C6F900E425E3 /* JsonRequestRetry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonRequestRetry.h; path = Utils/JsonRequest/JsonRequestRetry.h; sourceTree = "<group>"; };
+		60606BB91D43C6F900E425E3 /* JsonRequestRetry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonRequestRetry.m; path = Utils/JsonRequest/JsonRequestRetry.m; sourceTree = "<group>"; };
 		60606BBB1D43C71800E425E3 /* RequestsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequestsManager.h; path = Utils/JsonRequest/RequestsManager.h; sourceTree = "<group>"; };
 		60606BBC1D43C71800E425E3 /* RequestsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequestsManager.m; path = Utils/JsonRequest/RequestsManager.m; sourceTree = "<group>"; };
+		60606BBF1D43C8EC00E425E3 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Utils/ImageDownloader/ImageDownloader.h; sourceTree = "<group>"; };
+		60606BC01D43C8EC00E425E3 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Utils/ImageDownloader/ImageDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,7 @@
 		60606B991D43C40B00E425E3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				60606BBE1D43C8E200E425E3 /* ImageDownloader */,
 				60606BB71D43C6EC00E425E3 /* JsonRequest */,
 				60606BB31D43C61800E425E3 /* HistoryHelper */,
 				60606BAA1D43C50E00E425E3 /* Network */,
@@ -246,12 +250,21 @@
 		60606BB71D43C6EC00E425E3 /* JsonRequest */ = {
 			isa = PBXGroup;
 			children = (
-				60606BB81D43C6F900E425E3 /* JsonRequest.h */,
-				60606BB91D43C6F900E425E3 /* JsonRequest.m */,
+				60606BB81D43C6F900E425E3 /* JsonRequestRetry.h */,
+				60606BB91D43C6F900E425E3 /* JsonRequestRetry.m */,
 				60606BBB1D43C71800E425E3 /* RequestsManager.h */,
 				60606BBC1D43C71800E425E3 /* RequestsManager.m */,
 			);
 			name = JsonRequest;
+			sourceTree = "<group>";
+		};
+		60606BBE1D43C8E200E425E3 /* ImageDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				60606BBF1D43C8EC00E425E3 /* ImageDownloader.h */,
+				60606BC01D43C8EC00E425E3 /* ImageDownloader.m */,
+			);
+			name = ImageDownloader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,10 +405,11 @@
 				60606B641D43C03C00E425E3 /* main.m in Sources */,
 				60606BB61D43C65500E425E3 /* NSUserDefaults+History.m in Sources */,
 				60606B9C1D43C43900E425E3 /* DashboardCollectionController.m in Sources */,
-				60606BBA1D43C6F900E425E3 /* JsonRequest.m in Sources */,
+				60606BBA1D43C6F900E425E3 /* JsonRequestRetry.m in Sources */,
 				60606B981D43C37500E425E3 /* DashboardViewController.m in Sources */,
 				60606BA31D43C49100E425E3 /* Photos.m in Sources */,
 				60606BA91D43C4D300E425E3 /* Photo+URL.m in Sources */,
+				60606BC11D43C8EC00E425E3 /* ImageDownloader.m in Sources */,
 				60606B9F1D43C45800E425E3 /* PhotoCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

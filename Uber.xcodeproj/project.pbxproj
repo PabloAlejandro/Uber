@@ -16,7 +16,6 @@
 		60606B881D43C03C00E425E3 /* UberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B871D43C03C00E425E3 /* UberUITests.m */; };
 		60606B981D43C37500E425E3 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B971D43C37500E425E3 /* DashboardViewController.m */; };
 		60606B9C1D43C43900E425E3 /* DashboardCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B9B1D43C43900E425E3 /* DashboardCollectionController.m */; };
-		60606B9F1D43C45800E425E3 /* PhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B9E1D43C45800E425E3 /* PhotoCollectionCell.m */; };
 		60606BA31D43C49100E425E3 /* Photos.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BA21D43C49100E425E3 /* Photos.m */; };
 		60606BA61D43C49A00E425E3 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BA51D43C49A00E425E3 /* Photo.m */; };
 		60606BA91D43C4D300E425E3 /* Photo+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BA81D43C4D300E425E3 /* Photo+URL.m */; };
@@ -26,6 +25,7 @@
 		60606BBA1D43C6F900E425E3 /* JsonRequestRetry.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BB91D43C6F900E425E3 /* JsonRequestRetry.m */; };
 		60606BBD1D43C71800E425E3 /* RequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BBC1D43C71800E425E3 /* RequestsManager.m */; };
 		60606BC11D43C8EC00E425E3 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BC01D43C8EC00E425E3 /* ImageDownloader.m */; };
+		60606BC41D43C9DB00E425E3 /* PhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BC31D43C9DB00E425E3 /* PhotoCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +64,6 @@
 		60606B971D43C37500E425E3 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardViewController.m; path = Dashboard/DashboardViewController.m; sourceTree = "<group>"; };
 		60606B9A1D43C43900E425E3 /* DashboardCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardCollectionController.h; path = Dashboard/DashboardCollectionController.h; sourceTree = "<group>"; };
 		60606B9B1D43C43900E425E3 /* DashboardCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardCollectionController.m; path = Dashboard/DashboardCollectionController.m; sourceTree = "<group>"; };
-		60606B9D1D43C45800E425E3 /* PhotoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCollectionCell.h; path = Dashboard/PhotoCollectionCell.h; sourceTree = "<group>"; };
-		60606B9E1D43C45800E425E3 /* PhotoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCollectionCell.m; path = Dashboard/PhotoCollectionCell.m; sourceTree = "<group>"; };
 		60606BA11D43C49100E425E3 /* Photos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photos.h; path = Utils/Model/Photos.h; sourceTree = "<group>"; };
 		60606BA21D43C49100E425E3 /* Photos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photos.m; path = Utils/Model/Photos.m; sourceTree = "<group>"; };
 		60606BA41D43C49A00E425E3 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = Utils/Model/Photo.h; sourceTree = "<group>"; };
@@ -84,6 +82,8 @@
 		60606BBC1D43C71800E425E3 /* RequestsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequestsManager.m; path = Utils/JsonRequest/RequestsManager.m; sourceTree = "<group>"; };
 		60606BBF1D43C8EC00E425E3 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloader.h; path = Utils/ImageDownloader/ImageDownloader.h; sourceTree = "<group>"; };
 		60606BC01D43C8EC00E425E3 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Utils/ImageDownloader/ImageDownloader.m; sourceTree = "<group>"; };
+		60606BC21D43C9DB00E425E3 /* PhotoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCollectionCell.h; path = Dashboard/PhotoCollectionCell.h; sourceTree = "<group>"; };
+		60606BC31D43C9DB00E425E3 /* PhotoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCollectionCell.m; path = Dashboard/PhotoCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,8 +180,8 @@
 				60606B971D43C37500E425E3 /* DashboardViewController.m */,
 				60606B9A1D43C43900E425E3 /* DashboardCollectionController.h */,
 				60606B9B1D43C43900E425E3 /* DashboardCollectionController.m */,
-				60606B9D1D43C45800E425E3 /* PhotoCollectionCell.h */,
-				60606B9E1D43C45800E425E3 /* PhotoCollectionCell.m */,
+				60606BC21D43C9DB00E425E3 /* PhotoCollectionCell.h */,
+				60606BC31D43C9DB00E425E3 /* PhotoCollectionCell.m */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -403,6 +403,7 @@
 				60606B671D43C03C00E425E3 /* AppDelegate.m in Sources */,
 				60606BAF1D43C54600E425E3 /* ServerRequestUtils.m in Sources */,
 				60606B641D43C03C00E425E3 /* main.m in Sources */,
+				60606BC41D43C9DB00E425E3 /* PhotoCollectionCell.m in Sources */,
 				60606BB61D43C65500E425E3 /* NSUserDefaults+History.m in Sources */,
 				60606B9C1D43C43900E425E3 /* DashboardCollectionController.m in Sources */,
 				60606BBA1D43C6F900E425E3 /* JsonRequestRetry.m in Sources */,
@@ -410,7 +411,6 @@
 				60606BA31D43C49100E425E3 /* Photos.m in Sources */,
 				60606BA91D43C4D300E425E3 /* Photo+URL.m in Sources */,
 				60606BC11D43C8EC00E425E3 /* ImageDownloader.m in Sources */,
-				60606B9F1D43C45800E425E3 /* PhotoCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

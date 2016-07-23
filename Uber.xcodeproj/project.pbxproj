@@ -26,6 +26,7 @@
 		60606BBD1D43C71800E425E3 /* RequestsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BBC1D43C71800E425E3 /* RequestsManager.m */; };
 		60606BC11D43C8EC00E425E3 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BC01D43C8EC00E425E3 /* ImageDownloader.m */; };
 		60606BC41D43C9DB00E425E3 /* PhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BC31D43C9DB00E425E3 /* PhotoCollectionCell.m */; };
+		60606BC81D43CA3700E425E3 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606BC71D43CA3700E425E3 /* HistoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		60606BC01D43C8EC00E425E3 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloader.m; path = Utils/ImageDownloader/ImageDownloader.m; sourceTree = "<group>"; };
 		60606BC21D43C9DB00E425E3 /* PhotoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoCollectionCell.h; path = Dashboard/PhotoCollectionCell.h; sourceTree = "<group>"; };
 		60606BC31D43C9DB00E425E3 /* PhotoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCollectionCell.m; path = Dashboard/PhotoCollectionCell.m; sourceTree = "<group>"; };
+		60606BC61D43CA3700E425E3 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HistoryViewController.h; path = HistoryView/HistoryViewController.h; sourceTree = "<group>"; };
+		60606BC71D43CA3700E425E3 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HistoryViewController.m; path = HistoryView/HistoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				60606B951D43C34300E425E3 /* Dashboard */,
+				60606BC51D43CA1800E425E3 /* HistoryView */,
 				60606B651D43C03C00E425E3 /* AppDelegate.h */,
 				60606B661D43C03C00E425E3 /* AppDelegate.m */,
 				60606B6B1D43C03C00E425E3 /* Main.storyboard */,
@@ -265,6 +269,15 @@
 				60606BC01D43C8EC00E425E3 /* ImageDownloader.m */,
 			);
 			name = ImageDownloader;
+			sourceTree = "<group>";
+		};
+		60606BC51D43CA1800E425E3 /* HistoryView */ = {
+			isa = PBXGroup;
+			children = (
+				60606BC61D43CA3700E425E3 /* HistoryViewController.h */,
+				60606BC71D43CA3700E425E3 /* HistoryViewController.m */,
+			);
+			name = HistoryView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +418,7 @@
 				60606B641D43C03C00E425E3 /* main.m in Sources */,
 				60606BC41D43C9DB00E425E3 /* PhotoCollectionCell.m in Sources */,
 				60606BB61D43C65500E425E3 /* NSUserDefaults+History.m in Sources */,
+				60606BC81D43CA3700E425E3 /* HistoryViewController.m in Sources */,
 				60606B9C1D43C43900E425E3 /* DashboardCollectionController.m in Sources */,
 				60606BBA1D43C6F900E425E3 /* JsonRequestRetry.m in Sources */,
 				60606B981D43C37500E425E3 /* DashboardViewController.m in Sources */,

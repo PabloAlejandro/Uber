@@ -7,6 +7,7 @@
 //
 
 #import "DashboardViewController.h"
+#import "HistoryViewController.h"
 #import "DashboardCollectionController.h"
 #import "JsonRequestRetry.h"
 #import "NSUserDefaults+History.h"
@@ -17,7 +18,7 @@ static NSInteger const perpage = 50;
 static NSString * const baseURL = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=3e7cc266ae2b0e0d78e279ce8e361736&per_page=%lu&page=%lu&format=json&nojsoncallback=1&safe_search=1&text=%@";
 static NSString * const kHistorySegue = @"HistorySegue";
 
-@interface DashboardViewController () <UISearchBarDelegate, DashboardCollectionDelegate>
+@interface DashboardViewController () <UISearchBarDelegate, HistoryDelegate, DashboardCollectionDelegate>
 
 @property (nonatomic, weak) IBOutlet UISearchBar * searchBar;
 @property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
@@ -186,6 +187,14 @@ static NSString * const kHistorySegue = @"HistorySegue";
         _jsonRequestRetry = [JsonRequestRetry new];
     }
     return _jsonRequestRetry;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:kHistorySegue]) {
+        HistoryViewController * history = [segue destinationViewController];
+        history.delegate = self;
+    }
 }
 
 @end

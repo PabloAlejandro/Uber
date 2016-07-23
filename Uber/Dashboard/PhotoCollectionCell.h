@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PhotoCollectionCell : UICollectionView
+@interface PhotoCollectionCell : UICollectionViewCell
+
+@property (nonatomic, weak) IBOutlet UIImageView * customImageView;
 
 @end

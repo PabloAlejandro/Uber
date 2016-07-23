@@ -15,20 +15,25 @@
 {
     NetworkFactoryRequests * factoryRequest = [[NetworkFactoryRequests alloc] init];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    __weak typeof (self) weakSelf = self;
+    
     [factoryRequest sendAsynchronousRequest:request completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
+        
+        __strong typeof (self) strongSelf = weakSelf;
         if(error == nil) {
             UIImage * image = [[UIImage alloc] initWithData:data];
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if([self.delegate respondsToSelector:@selector(imageDidDownload:collectionView:forIndexPath:userInfo:)])
-                        [self.delegate imageDidDownload:image collectionView:collectionView forIndexPath:indexPath userInfo:userInfo];
+                    if([strongSelf.delegate respondsToSelector:@selector(imageDidDownload:collectionView:forIndexPath:userInfo:)])
+                        [strongSelf.delegate imageDidDownload:image collectionView:collectionView forIndexPath:indexPath userInfo:userInfo];
                 });
             }
         }
         else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if([self.delegate respondsToSelector:@selector(imageDidFailDownload:collectionView:forIndexPath:userInfo:)])
-                    [self.delegate imageDidFailDownload:error collectionView:collectionView forIndexPath:indexPath userInfo:userInfo];
+                if([strongSelf.delegate respondsToSelector:@selector(imageDidFailDownload:collectionView:forIndexPath:userInfo:)])
+                    [strongSelf.delegate imageDidFailDownload:error collectionView:collectionView forIndexPath:indexPath userInfo:userInfo];
             });
         }
     }];

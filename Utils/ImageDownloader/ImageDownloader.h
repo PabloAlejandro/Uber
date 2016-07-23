@@ -11,8 +11,8 @@
 
 @protocol ImageDownloaderDelegate <NSObject>
 
-- (void)imageDidDownload:(UIImage *)image collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath;
-- (void)imageDidFailDownload:(NSError *)error collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath;
+- (void)imageDidDownload:(UIImage *)image collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath userInfo:(NSDictionary *)userInfo;;
+- (void)imageDidFailDownload:(NSError *)error collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath userInfo:(NSDictionary *)userInfo;;
 
 @end
 
@@ -20,6 +20,6 @@
 
 @property (nonatomic, weak) id <ImageDownloaderDelegate> delegate;
 
-- (void)downloadImageForUrl:(NSURL *)url collectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath;
+- (void)downloadImageForUrl:(NSURL *)url collectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath userInfo:(NSDictionary *)userInfo;
 
 @end

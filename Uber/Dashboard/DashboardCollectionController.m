@@ -40,7 +40,7 @@ static NSTimeInterval const columns = 3;
     }
     else {
         cell.customImageView.image = nil;   // We can show a "loading image" here
-        [self.imageDownloader downloadImageForUrl:[photo url] collectionView:collectionView indexPath:indexPath];
+        [self.imageDownloader downloadImageForUrl:[photo url] collectionView:collectionView indexPath:indexPath userInfo:@{@"id_photo" : photo.id_photo}];
     }
     
     return cell;
@@ -110,11 +110,18 @@ static NSTimeInterval const columns = 3;
 
 #pragma mark - ImageDownloaderDelegate
 
-- (void)imageDidDownload:(UIImage *)image collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath
+- (void)imageDidDownload:(UIImage *)image collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath userInfo:(NSDictionary *)userInfo;
 {
+    // We cache the image
+    NSString * id_photo = [userInfo objectForKey:@"id_photo"];
+    [self.cached_images setObject:image forKey:id_photo];
+    
+    if(indexPath.row > self.photos.photos.count) {return;}
+    
     Photo * photo = [self.photos.photos objectAtIndex:indexPath.row];
     
-    [self.cached_images setObject:image forKey:photo.id_photo];
+    // If the image is from the previous search we return
+    if(![photo.id_photo isEqualToString:id_photo]) {return;}
     
     if([[collectionView indexPathsForVisibleItems] containsObject:indexPath]) {
         PhotoCollectionCell *cell = (PhotoCollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -122,7 +129,7 @@ static NSTimeInterval const columns = 3;
     }
 }
 
-- (void)imageDidFailDownload:(NSError *)error collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath
+- (void)imageDidFailDownload:(NSError *)error collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath userInfo:(NSDictionary *)userInfo;
 {
     // TODO: Handle error (ie. alert view message, etc.)
 }

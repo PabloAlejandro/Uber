@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  DashboardViewController.h
 //  Uber
 //
 //  Created by Pau (Personal) on 23/07/2016.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface DashboardViewController : UIViewController
 
 
 @end

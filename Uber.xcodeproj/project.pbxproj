@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		60606B641D43C03C00E425E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B631D43C03C00E425E3 /* main.m */; };
 		60606B671D43C03C00E425E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B661D43C03C00E425E3 /* AppDelegate.m */; };
-		60606B6A1D43C03C00E425E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B691D43C03C00E425E3 /* ViewController.m */; };
 		60606B6D1D43C03C00E425E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60606B6B1D43C03C00E425E3 /* Main.storyboard */; };
 		60606B6F1D43C03C00E425E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60606B6E1D43C03C00E425E3 /* Assets.xcassets */; };
 		60606B721D43C03C00E425E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60606B701D43C03C00E425E3 /* LaunchScreen.storyboard */; };
 		60606B7D1D43C03C00E425E3 /* UberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B7C1D43C03C00E425E3 /* UberTests.m */; };
 		60606B881D43C03C00E425E3 /* UberUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B871D43C03C00E425E3 /* UberUITests.m */; };
+		60606B981D43C37500E425E3 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60606B971D43C37500E425E3 /* DashboardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +39,6 @@
 		60606B631D43C03C00E425E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60606B651D43C03C00E425E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		60606B661D43C03C00E425E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		60606B681D43C03C00E425E3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		60606B691D43C03C00E425E3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		60606B6C1D43C03C00E425E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		60606B6E1D43C03C00E425E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60606B711D43C03C00E425E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +49,8 @@
 		60606B831D43C03C00E425E3 /* UberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60606B871D43C03C00E425E3 /* UberUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UberUITests.m; sourceTree = "<group>"; };
 		60606B891D43C03C00E425E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60606B961D43C37500E425E3 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashboardViewController.h; path = Dashboard/DashboardViewController.h; sourceTree = "<group>"; };
+		60606B971D43C37500E425E3 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashboardViewController.m; path = Dashboard/DashboardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +101,9 @@
 		60606B611D43C03C00E425E3 /* Uber */ = {
 			isa = PBXGroup;
 			children = (
+				60606B951D43C34300E425E3 /* Dashboard */,
 				60606B651D43C03C00E425E3 /* AppDelegate.h */,
 				60606B661D43C03C00E425E3 /* AppDelegate.m */,
-				60606B681D43C03C00E425E3 /* ViewController.h */,
-				60606B691D43C03C00E425E3 /* ViewController.m */,
 				60606B6B1D43C03C00E425E3 /* Main.storyboard */,
 				60606B6E1D43C03C00E425E3 /* Assets.xcassets */,
 				60606B701D43C03C00E425E3 /* LaunchScreen.storyboard */,
@@ -138,6 +137,15 @@
 				60606B891D43C03C00E425E3 /* Info.plist */,
 			);
 			path = UberUITests;
+			sourceTree = "<group>";
+		};
+		60606B951D43C34300E425E3 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				60606B961D43C37500E425E3 /* DashboardViewController.h */,
+				60606B971D43C37500E425E3 /* DashboardViewController.m */,
+			);
+			name = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60606B6A1D43C03C00E425E3 /* ViewController.m in Sources */,
 				60606B671D43C03C00E425E3 /* AppDelegate.m in Sources */,
 				60606B641D43C03C00E425E3 /* main.m in Sources */,
+				60606B981D43C37500E425E3 /* DashboardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

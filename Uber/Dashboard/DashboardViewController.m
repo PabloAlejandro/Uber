@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  DashboardViewController.m
 //  Uber
 //
 //  Created by Pau (Personal) on 23/07/2016.
 //  Copyright © 2016 Uber. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "DashboardViewController.h"
 
-@interface ViewController ()
+@interface DashboardViewController ()
 
 @end
 
-@implementation ViewController
+@implementation DashboardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

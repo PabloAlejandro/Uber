@@ -1,5 +1,5 @@
 //
-//  JsonRequest.h
+//  JsonRequestRetry.h
 //  Uber
 //
 //  Created by Pau (Personal) on 23/07/2016.

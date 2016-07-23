@@ -1,5 +1,5 @@
 //
-//  JsonRequest.m
+//  JsonRequestRetry.m
 //  Uber
 //
 //  Created by Pau (Personal) on 23/07/2016.

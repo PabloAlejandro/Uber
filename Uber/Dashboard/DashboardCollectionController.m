@@ -40,7 +40,8 @@ static NSTimeInterval const columns = 3;
     }
     else {
         cell.customImageView.image = nil;   // We can show a "loading image" here
-        [self.imageDownloader downloadImageForUrl:[photo url] collectionView:collectionView indexPath:indexPath userInfo:@{@"id_photo" : photo.id_photo}];
+        NSDictionary * user_info = @{@"id_photo" : photo.id_photo};
+        [self.imageDownloader downloadImageForUrl:[photo url] collectionView:collectionView indexPath:indexPath userInfo:user_info];
     }
     
     return cell;
@@ -112,16 +113,20 @@ static NSTimeInterval const columns = 3;
 
 - (void)imageDidDownload:(UIImage *)image collectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath userInfo:(NSDictionary *)userInfo;
 {
-    // We cache the image
-    NSString * id_photo = [userInfo objectForKey:@"id_photo"];
-    [self.cached_images setObject:image forKey:id_photo];
+    NSArray <Photo * > * photos = self.photos.photos;
     
-    if(indexPath.row > self.photos.photos.count) {return;}
+    if(indexPath.row >= photos.count) {return;}
     
-    Photo * photo = [self.photos.photos objectAtIndex:indexPath.row];
+    Photo * photo = [photos objectAtIndex:indexPath.row];
+    
+    if(photo == nil) {return;}
     
     // If the image is from the previous search we return
+    NSString * id_photo = [userInfo objectForKey:@"id_photo"];
     if(![photo.id_photo isEqualToString:id_photo]) {return;}
+    
+    // We cache the image
+    [self.cached_images setObject:image forKey:id_photo];
     
     if([[collectionView indexPathsForVisibleItems] containsObject:indexPath]) {
         PhotoCollectionCell *cell = (PhotoCollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -151,6 +156,13 @@ static NSTimeInterval const columns = 3;
         _cached_images = [NSMutableDictionary new];
     }
     return _cached_images;
+}
+
+- (Photos *)photos
+{
+    @synchronized (self) {
+        return _photos;
+    }
 }
 
 @end

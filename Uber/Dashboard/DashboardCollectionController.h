@@ -24,6 +24,6 @@
 
 @property (nonatomic, weak) id <DashboardCollectionDelegate> delegate;
 @property (nonatomic, strong) UICollectionView * collectionView;
-@property (nonatomic, strong) Photos * photos;
+@property (nonatomic, copy) Photos * photos;
 
 @end

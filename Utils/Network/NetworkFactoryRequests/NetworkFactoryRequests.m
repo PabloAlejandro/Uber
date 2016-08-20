@@ -6,24 +6,25 @@
 //  Copyright © 2016 Uber. All rights reserved.
 //
 
-#import "NetworkFactoryRequests.h"
+#import "NSURLSession+Factory.h"
 
-@interface NetworkFactoryRequests ()
+@implementation NSURLSession (Factory)
 
-@end
-
-@implementation NetworkFactoryRequests
-
-- (void)sendAsynchronousRequest:(NSURLRequest *)request
-              completionHandler:(void (^)(NSURLResponse *, NSData *, NSError *))completionHandler {
++ (NSURLSessionDataTask *)sendAsynchronousRequest:(NSURLRequest *)request
+              completionHandler:(void (^)(NSData *data, NSURLResponse *response, NSError *error))completionHandler {
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                            completionHandler:
-                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      completionHandler(response, data, error);
-                                  }];
+                                            completionHandler:completionHandler];
     [task resume];
+    return task;
+}
+
++ (NSURLSessionDataTask *)getTaskForAsynchronousRequest:(NSURLRequest *)request completionHandler:(void (^)(NSData *data, NSURLResponse *response, NSError *error)) completionHandler
+{
+    NSURLSession *session = [NSURLSession sharedSession];
+    return [session dataTaskWithRequest:request
+                      completionHandler:completionHandler];
 }
 
 @end

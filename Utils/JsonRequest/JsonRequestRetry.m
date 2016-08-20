@@ -47,7 +47,7 @@ static NSTimeInterval const kMinTimeInterval = 5;
     return [self initWithUrl:url parameters:nil httpHeaderFields:nil method:HTTP_METHOD_GET referer:nil requestKey:nil requestSecretKey:nil userAgent:nil data:nil userToken:nil];
 }
 
-- (void)retrieveDataWithCompletion:(RequestResultBlock)completion
+- (NSURLSessionDataTask *)retrieveDataWithCompletion:(RequestResultBlock)completion
 {
     self.completion = completion;
     self.request.timeout = self.timeout;
@@ -57,16 +57,16 @@ static NSTimeInterval const kMinTimeInterval = 5;
     NSAssert(self.completion != nil, @"Completion can't be null");
     
     __weak typeof(self) weakSelf = self;
-    [self.request getObjectFromUrl:self.url parameters:self.parameters httpHeaderFields:self.httpHeaderFields method:[ServerRequestUtils methodName:self.method] referer:self.referer requestKey:self.requestKey requestSecretKey:self.requestSecretKey userAgent:self.userAgent data:self.data userToken:self.userToken done:^(NSObject *object, NSError *error) {
+    return [self.request getObjectFromUrl:self.url parameters:self.parameters httpHeaderFields:self.httpHeaderFields method:[ServerRequestUtils methodName:self.method] referer:self.referer requestKey:self.requestKey requestSecretKey:self.requestSecretKey userAgent:self.userAgent data:self.data userToken:self.userToken done:^(NSObject *object, NSError *error) {
         __strong typeof(self) strongSelf = weakSelf;
         [strongSelf handleResponse:object error:error];
     }];
 }
 
-- (void)retrieveDataForUrl:(NSURL *)url completionBlock:(RequestResultBlock)completion
+- (NSURLSessionDataTask *)retrieveDataForUrl:(NSURL *)url completionBlock:(RequestResultBlock)completion
 {
     self.url = url;
-    [self retrieveDataWithCompletion:completion];
+    return [self retrieveDataWithCompletion:completion];
 }
 
 #pragma mark - Private methods

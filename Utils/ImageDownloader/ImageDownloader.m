@@ -7,18 +7,20 @@
 //
 
 #import "ImageDownloader.h"
-#import "NetworkFactoryRequests.h"
+#import "NSURLSession+Factory.h"
 
 @implementation ImageDownloader
 
 - (void)downloadImageForUrl:(NSURL *)url collectionView:(UICollectionView *)collectionView indexPath:(NSIndexPath *)indexPath userInfo:(NSDictionary *)userInfo
 {
-    NetworkFactoryRequests * factoryRequest = [[NetworkFactoryRequests alloc] init];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    // TODO: Add NSURLSessionDataTask to a NSDictionary with the indexPath as key, so that when we get a new
+    // request for the same indexPath we can cancel it.
     
     __weak typeof (self) weakSelf = self;
     
-    [factoryRequest sendAsynchronousRequest:request completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
+    [NSURLSession sendAsynchronousRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         __strong typeof (self) strongSelf = weakSelf;
         if(error == nil) {

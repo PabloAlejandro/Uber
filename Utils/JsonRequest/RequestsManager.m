@@ -8,13 +8,7 @@
 
 #import "RequestsManager.h"
 #import "ServerRequestUtils.h"
-#import "NetworkFactoryRequests.h"
-
-@interface RequestsManager ()
-
-@property (nonatomic, strong) NetworkFactoryRequests * networkFactoryRequests;
-
-@end
+#import "NSURLSession+Factory.h"
 
 @implementation RequestsManager
 
@@ -28,7 +22,7 @@
 
 #pragma mark - Public instance methods
 
-- (void)getObjectFromUrl:(NSURL *)url parameters:(NSDictionary *)parameters httpHeaderFields:(NSDictionary *)httpHeaderFields method:(NSString *)method referer:(NSURL *)referer requestKey:(NSString *)requestKey requestSecretKey:(NSString *)requestSecretKey userAgent:(NSString *)userAgent data:(NSData *)data userToken:(NSString *)userToken done:(void (^)(NSObject *object, NSError *error))doneBlock
+- (NSURLSessionDataTask *)getObjectFromUrl:(NSURL *)url parameters:(NSDictionary *)parameters httpHeaderFields:(NSDictionary *)httpHeaderFields method:(NSString *)method referer:(NSURL *)referer requestKey:(NSString *)requestKey requestSecretKey:(NSString *)requestSecretKey userAgent:(NSString *)userAgent data:(NSData *)data userToken:(NSString *)userToken done:(void (^)(NSObject *object, NSError *error))doneBlock
 {
     NSString *urlRequest = [url absoluteString];
     
@@ -60,8 +54,8 @@
         NSLog(@"%s %@", __func__, [request allHTTPHeaderFields]);
     }
     
-    [self.networkFactoryRequests sendAsynchronousRequest:request
-                                       completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    NSURLSessionDataTask * task = [NSURLSession sendAsynchronousRequest:request
+                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                            
                                            if(self.debug) {
                                                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
@@ -83,16 +77,7 @@
                                                [ServerRequestUtils processData:data done:doneBlock];
                                            }
                                        }];
-}
-
-#pragma mark - Getters
-
-- (NetworkFactoryRequests * )networkFactoryRequests
-{
-    if(_networkFactoryRequests == nil) {
-        _networkFactoryRequests = [[NetworkFactoryRequests alloc] init];
-    }
-    return _networkFactoryRequests;
+    return task;
 }
 
 @end

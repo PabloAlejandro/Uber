@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoCollectionController.h"
 
-@interface DashboardViewController : UIViewController
-
+@interface DashboardViewController : PhotoCollectionController
 
 @end
 

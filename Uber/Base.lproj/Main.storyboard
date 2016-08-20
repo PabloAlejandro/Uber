@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ss8-DO-Xs2" id="1Qq-6d-rI0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -72,7 +72,7 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <connections>
-                                    <outlet property="delegate" destination="ZrF-hH-S3Y" id="s6K-Yz-nFi"/>
+                                    <outlet property="delegate" destination="ZrF-hH-S3Y" id="6fz-mY-qbo"/>
                                 </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jY6-Ls-Jeg">
@@ -109,6 +109,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZrF-hH-S3Y" id="g1V-bA-QTW"/>
+                                    <outlet property="delegate" destination="ZrF-hH-S3Y" id="4UU-lC-TZ5"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -124,7 +128,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="w0I-5B-HJ6"/>
                     <connections>
-                        <outlet property="collectionView" destination="jY6-Ls-Jeg" id="a8t-ib-KOV"/>
+                        <outlet property="collectionView" destination="jY6-Ls-Jeg" id="KCA-bl-GiQ"/>
                         <outlet property="searchBar" destination="UIy-um-1rM" id="pRs-qE-epf"/>
                         <segue destination="CK5-xv-yd2" kind="show" identifier="HistorySegue" id="65I-Lh-EbN">
                             <nil key="action"/>

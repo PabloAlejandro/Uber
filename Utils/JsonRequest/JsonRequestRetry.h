@@ -16,8 +16,8 @@ typedef void(^RequestResultBlock)(id result, NSDictionary * userInfo);
 - (id)initWithUrl:(NSURL *)url;
 - (id)initWithUrl:(NSURL *)url parameters:(NSDictionary *)parameters httpHeaderFields:(NSDictionary *)httpHeaderFields method:(HTTP_METHOD)method referer:(NSURL *)referer requestKey:(NSString *)requestKey requestSecretKey:(NSString *)requestSecretKey userAgent:(NSString *)userAgent data:(NSData *)data userToken:(NSString *)userToken NS_DESIGNATED_INITIALIZER;
 
-- (void)retrieveDataWithCompletion:(RequestResultBlock)completion;
-- (void)retrieveDataForUrl:(NSURL *)url completionBlock:(RequestResultBlock)completion;
+- (NSURLSessionDataTask *)retrieveDataWithCompletion:(RequestResultBlock)completion;
+- (NSURLSessionDataTask *)retrieveDataForUrl:(NSURL *)url completionBlock:(RequestResultBlock)completion;
 
 @property (nonatomic, strong) NSURL * url;
 @property (nonatomic, strong) NSDictionary *parameters;

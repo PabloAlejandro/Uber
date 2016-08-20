@@ -12,6 +12,8 @@
 
 @interface UberTests : XCTestCase
 
+@property (nonatomic, strong ) NSString * someInstacartString;
+
 @end
 
 @implementation UberTests

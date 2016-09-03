@@ -6,10 +6,9 @@
 //  Copyright © 2016 Uber. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DashboardCollectionController.h"
 
-@interface DashboardViewController : UIViewController
-
+@interface DashboardViewController : DashboardCollectionController
 
 @end
 

@@ -10,23 +10,23 @@
 #import "HistoryViewController.h"
 #import "DashboardCollectionController.h"
 #import "JsonRequestRetry.h"
-#import "NSUserDefaults+History.h"
 #import "Photos.h"
 #import "Photo.h"
+
+#import "PhotoCollectionCell.h"
+#import "Photo+URL.h"
+#import "NSUserDefaults+History.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 static NSInteger const perpage = 50;
 static NSString * const baseURL = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=3e7cc266ae2b0e0d78e279ce8e361736&per_page=%lu&page=%lu&format=json&nojsoncallback=1&safe_search=1&text=%@";
 static NSString * const kHistorySegue = @"HistorySegue";
 
-@interface DashboardViewController () <UISearchBarDelegate, HistoryDelegate, DashboardCollectionDelegate>
+@interface DashboardViewController () <UISearchBarDelegate, HistoryDelegate>
 
 @property (nonatomic, weak) IBOutlet UISearchBar * searchBar;
-@property (nonatomic, weak) IBOutlet UICollectionView * collectionView;
-@property (nonatomic, weak) IBOutlet UICollectionReusableView * collectionRausableView;
-@property (nonatomic, strong) DashboardCollectionController * collectionController;
 @property (nonatomic, strong) JsonRequestRetry * jsonRequestRetry;
 @property (nonatomic, assign) BOOL downloading;
-@property (nonatomic, strong) Photos * photos;
 
 @end
 
@@ -36,16 +36,6 @@ static NSString * const kHistorySegue = @"HistorySegue";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"Flickr Search";
-    self.collectionView.delegate = self.collectionController;
-    self.collectionView.dataSource = self.collectionController;
-    
-    // TODO: We should show some view or a different collection content when there is no data to show
-    // Note: this is not implemented since the task description remarks not to implement anything that is not asked.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)searchForPage:(NSInteger)page string:(NSString *)string
@@ -63,7 +53,6 @@ static NSString * const kHistorySegue = @"HistorySegue";
     [self.jsonRequestRetry retrieveDataForUrl:url completionBlock:^(id result, NSDictionary *userInfo) {
         
         // Note this is running on the main thread, since the completion block was called from it
-        
         if([result isKindOfClass:[NSDictionary class]]) {
             
             __strong typeof (self) strongSelf = weakSelf;
@@ -98,7 +87,7 @@ static NSString * const kHistorySegue = @"HistorySegue";
                 // If it's a new search we want to go to top
                 [strongSelf.collectionView scrollRectToVisible:CGRectMake(0, 0, CGRectGetWidth(strongSelf.collectionView.frame), CGRectGetHeight(strongSelf.collectionView.frame)) animated:NO];
             }
-            strongSelf.collectionController.photos = strongSelf.photos;
+            strongSelf.photos = strongSelf.photos;
             [strongSelf.collectionView reloadData];
             strongSelf.downloading = NO;
             
@@ -108,65 +97,56 @@ static NSString * const kHistorySegue = @"HistorySegue";
     }];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id)coordinator
-{
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
     [self.collectionView.collectionViewLayout invalidateLayout];
+}
+
+- (NSString *)collectionViewCellIdentifierAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString * kMyIdentifier = @"PhotoCollectionCell";
+    return kMyIdentifier;
+}
+
+- (void)configureCollectionViewCell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath {
+    Photo * photo = self.photos.photos[indexPath.row];
+    cell.backgroundColor = [UIColor colorWithWhite:.2 alpha:.35];
+    [((PhotoCollectionCell *)cell).customImageView sd_setImageWithURL:[photo url]];
+}
+
+- (void)collectionViewShouldLoadMore {
+    [self searchForPage:self.photos.page+1 string:self.photos.search];
 }
 
 #pragma mark - HistoryDelegate
 
-- (void)historyDidSelectSearch:(NSString *)search
-{
+- (void)historyDidSelectSearch:(NSString *)search {
     [[NSUserDefaults standardUserDefaults] addSearchToHistory:search];
     [self searchForPage:0 string:search];
 }
 
-#pragma mark - DashboardCollectionDelegate
+#pragma mark - UIScrollViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectPhoto:(Photo *)photo atIndexPath:(NSIndexPath *)indexPath
-{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     if([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
-    }
-    
-    // TODO: Use the image for a new action (ie. open the image in a new view)
-    // Note: this is not implemented since the task description remarks not to implement anything that is not asked.
-}
-
-- (void)collectionViewWillScroll:(UICollectionView *)collectionView
-{
-    if([self.searchBar isFirstResponder]) {
-        [self.searchBar resignFirstResponder];
-    }
-}
-
-- (void)collectionViewDidScrollToBottom:(UICollectionView *)collectionView
-{
-    if(self.photos.page < self.photos.pages) {
-        [self searchForPage:self.photos.page+1 string:self.photos.search];
     }
 }
 
 #pragma mark - UISearchBarDelegate
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     [[NSUserDefaults standardUserDefaults] addSearchToHistory:searchBar.text];
     [self searchForPage:0 string:searchBar.text];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     if([searchBar isFirstResponder]) {
         [searchBar resignFirstResponder];
     }
 }
 
-- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
     if([searchBar isFirstResponder]) {
         [searchBar resignFirstResponder];
     }
@@ -174,16 +154,6 @@ static NSString * const kHistorySegue = @"HistorySegue";
 }
 
 #pragma mark - Getters
-
-- (DashboardCollectionController *)collectionController
-{
-    if(!_collectionController) {
-        _collectionController = [DashboardCollectionController new];
-        _collectionController.delegate = self;
-        _collectionController.collectionView = self.collectionView;
-    }
-    return _collectionController;
-}
 
 - (JsonRequestRetry *)jsonRequestRetry
 {

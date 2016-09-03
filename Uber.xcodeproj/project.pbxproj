@@ -192,12 +192,12 @@
 		60606B951D43C34300E425E3 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				60606B961D43C37500E425E3 /* DashboardViewController.h */,
-				60606B971D43C37500E425E3 /* DashboardViewController.m */,
-				60606B9A1D43C43900E425E3 /* DashboardCollectionController.h */,
-				60606B9B1D43C43900E425E3 /* DashboardCollectionController.m */,
 				60606BC21D43C9DB00E425E3 /* PhotoCollectionCell.h */,
 				60606BC31D43C9DB00E425E3 /* PhotoCollectionCell.m */,
+				60606B9A1D43C43900E425E3 /* DashboardCollectionController.h */,
+				60606B9B1D43C43900E425E3 /* DashboardCollectionController.m */,
+				60606B961D43C37500E425E3 /* DashboardViewController.h */,
+				60606B971D43C37500E425E3 /* DashboardViewController.m */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";

@@ -11,18 +11,12 @@
 
 @class Photos, Photo;
 
-@protocol DashboardCollectionDelegate <NSObject>
+@interface DashboardCollectionController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@optional
-- (void)collectionView:(UICollectionView *)collectionView didSelectPhoto:(Photo *)photo atIndexPath:(NSIndexPath *)indexPath;
-- (void)collectionViewWillScroll:(UICollectionView *)collectionView;
-- (void)collectionViewDidScrollToBottom:(UICollectionView *)collectionView;
+- (NSString *)collectionViewCellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
+- (void)configureCollectionViewCell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath;
+- (void)collectionViewShouldLoadMore;
 
-@end
-
-@interface DashboardCollectionController : NSObject <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-
-@property (nonatomic, weak) id <DashboardCollectionDelegate> delegate;
 @property (nonatomic, strong) UICollectionView * collectionView;
 @property (nonatomic, strong) Photos * photos;
 
